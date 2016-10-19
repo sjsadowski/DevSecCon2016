@@ -11,7 +11,8 @@
 means you already have at least the knowledge
   * For those who don't, I my hope is that there are at least no surprises.
 4. This is not a "how-to" guide so much as a "how we did" guide
-5. Everything revolves around the idea of "minimum necessary access."
+5. Everything revolves around the idea of "minimum necessary access" and "do it
+securely or don't do it"
 6. How did we start?
 7. Worked to understand our security space
 8. Knowing how we could manage our infrastructure was key
@@ -26,7 +27,7 @@ better configuration management, auditing, code management
 14. Tools we picked:
   * Git for SCM/GitLab for UI & Access Management
   * Jenkins for CI/CD
-  * Terraform for IaC
+  * Terraform & Packer for IaC
   * InSpec for configuration testing
   * Chef12 for Configuration Management
   * ELK - full HA cluster for logging
@@ -55,15 +56,25 @@ signed off on, my team allows no internal exceptions. "Lock it down or turn it o
 25. Again: Minimum necessary access: devs have access to development environments only,
 all other changes/deployments handled through Jenkins for infrastructure, or
 other defined build tool for code/applications
+26. Q: Where's the security? it's only explicitly mentioned once!
+27. A: It's inherent in every step.
+  * Base images built to a hardening standard
+  * Machines are scanned for compliance along the build pipelines
+  * Communication is secured (TLS/SSH/SCP)
+  * Keys are encrypted (GPG) with passwords stored separately
+  * Data objects for configuration management are encrypted
 26. So... why not tool X? It does A, B, C better...
   * Tools that had the best internal support (KB, understanding)
   * Tools that were most compatible with other parts of the org
   * Tools that had the best trade-offs
   * Represented the best overall needs for OUR org
-27. My advice for you - do the same. Find your tools, and run with them
+27. My advice for you: do the same. Find your tools, and run with them
 28. What are some of our problems?
   * Lack of client buy-in
   * Developer demands
   * Signal v. Noise (Monitoring/Alerting)
   * Knowledge sharing
-29. THE FUTURE!
+29. THE FUTURE (none of which is technical... really)
+  * Better education for both sales org and clients
+  * Reduction of noise by tuning our alerts
+  * Better compliance and inspection
